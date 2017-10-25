@@ -9,6 +9,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <utility>
 
 using namespace std;
 
@@ -16,10 +17,10 @@ int min;
 int max;
 int const N=10;
 int t[N];
+int value;
 
 
-
-void losowanietablicy()
+void tworzenietablicy()
 {
 	srand(time(0));
 	for(int i=0; i<N; ++i)
@@ -29,6 +30,39 @@ void losowanietablicy()
 	}
 }
 	
+void sortowanie()
+{
+	bool z=true;
+	
+	while(z)
+	{
+		z=false;
+		for(int k=0; k<N; ++k)
+		{
+			if(t[k]>t[k-1])
+			{
+				value=t[k];
+				t[k]=t[k-1];
+				t[k]=value;
+				z=true;
+			}
+
+		}
+	}
+}
+
+
+/*
+void losowanietablicy()
+{
+	srand(time(0));
+	for(int i=0; i<N; ++i)
+	{
+		t[i]=rand()%100;
+		cout << t[i] << endl;
+	}
+}
+*/
 
 int maxvalue()
 {
@@ -58,7 +92,15 @@ int minvalue()
 
 int main()
 {
-	losowanietablicy();	
+	tworzenietablicy();
+	
+	cout << endl;
+	
+	sortowanie();
+	for(int g=0; g<N; ++g)
+		cout << t[g] << endl;
+	
+	//losowanietablicy();	
 
 	cout << endl;
 	cout << "Wartosc najmniejsza: " << minvalue() << endl;
